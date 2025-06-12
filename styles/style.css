@@ -9,7 +9,7 @@ body {
 
 .image-wrapper {
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   position: fixed;
   top: 0;
   left: 0;
@@ -34,7 +34,7 @@ body {
   top: 0;
   left: 0;
   width: 50%; /* Occupa la metà sinistra del .image-wrapper */
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
   display: flex;          /* Abilita flexbox */
   flex-direction: column; /* Impila i figli verticalmente */
   align-items: center;    /* Center horizontally */
