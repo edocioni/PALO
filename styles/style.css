@@ -1,0 +1,506 @@
+body {
+  margin: 0;
+  overflow: hidden; /* Previene scrollbar indesiderate */
+  /* Disabilita la selezione del testo per prevenire il cursore lampeggiante */
+  user-select: none;
+  -webkit-user-select: none; /* Per browser basati su WebKit (Chrome, Safari) */
+  -moz-user-select: none; /* Per Firefox */
+}
+
+.image-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Sfondo gradiente verde per l'intero wrapper */
+  background: #2f7f2f; /* Fallback per browser che non supportano i gradienti */
+  background: linear-gradient(135deg, #5cb85c 0%, #2f7f2f 40%, #2f7f2f 60%, #1e561e 100%);
+  /* cursor: none; /* Opzionale: nasconde il cursore */
+}
+
+.left-content-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%; /* Occupa la metà sinistra del .image-wrapper */
+  height: 100%;
+  display: flex;          /* Abilita flexbox */
+  flex-direction: column; /* Impila i figli verticalmente */
+  align-items: center;    /* Center horizontally */
+  justify-content: center; /* Centra #paloContainer verticalmente */
+  z-index: 20; /* Increased to be above image-fade and social icons */
+  /* Opzionale: per debug, per vedere i bordi del box */
+  /* border: 1px solid red; */
+}
+
+
+#topLeftMenu.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out;
+}
+
+#topLeftMenu.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.7s ease-in-out, visibility 0.7s ease-in-out;
+}
+
+#topLeftMenu.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transition-delay: 0s;
+}
+
+#topLeftMenu a {
+  color: yellow;
+  text-decoration: none;
+  margin-right: 20px;
+  font-weight: bold;
+  font-size: 2.5vw;
+}
+
+#paloContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  text-align: center;
+  line-height: 1.2;
+  padding-left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1.5s ease-in-out, visibility 0s linear 1.5s;
+  margin-top: auto; /* Push paloContainer down below the menu */
+  margin-bottom: auto; /* Center vertically between menu and bottom */
+}
+
+#backgroundPaloText {
+  font-size: 10vw;
+  font-weight: bold;
+  color: yellow;
+  position: relative;
+  transform: none;
+  margin: 0;
+}
+
+#subtitleText {
+  color: white;
+  font-size: 2vw;
+  font-weight: normal;
+  margin: 0 0 15px 0; /* Remove top margin to be immediately below PALO */
+  position: static;
+  top: auto;
+  left: auto;
+  right: auto;
+  text-align: center;
+  white-space: nowrap;
+}
+
+#paloContainer.visible {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+}
+
+#paloContainer {
+  /* Rimossi margin-top: auto e margin-bottom: auto per posizionarlo sotto #topLeftMenu */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+  text-align: center;
+  line-height: 1.2;
+  padding-left: 0; /* Remove left padding for centering */
+  opacity: 0;
+  visibility: hidden;
+  margin-top: auto; /* Centra verticalmente nello spazio disponibile dopo #topLeftMenu */
+  margin-bottom: auto;
+  margin-top: 0; /* #paloContainer è centrato dal genitore flex */
+  margin-bottom: 0; /* #paloContainer è centrato dal genitore flex */
+  transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+  max-width: none;
+  margin-left: auto;
+  margin-right: auto;
+  word-wrap: normal; /* Prevent forced wrapping */
+}
+
+#backgroundPaloText { /* Rimosso .image-wrapper dal selettore per specificità */
+  /* Le proprietà di posizionamento e dimensione sono ora gestite da .left-content-box */
+  font-size: vw; /* Dimensione del testo: 10vw */
+  font-weight: bold;
+  color: yellow; /* Colore del testo: giallo */
+  text-align: center;
+  position: relative; /* Necessario per posizionare #subtitleText in modo assoluto rispetto a questo elemento */
+  /* Rimosso transform per centrare il testo */
+  transform: none;
+  /* Centrare verticalmente nel flex container */
+  margin-top: auto;
+  margin-bottom: auto;
+  /* z-index non è più necessario qui, è gestito dal genitore .left-content-box */
+}
+
+#paloContainer.visible {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s; /* Sovrascrive il ritardo per la visibilità durante il fade-in */
+}
+
+#topLeftMenu {
+  color: yellow;
+  font-size: 1vw;
+  /* margin-top: 20px; Gestito da position:absolute e top */
+  margin-bottom: 0; /* Remove bottom margin */
+  text-align: center;
+  position: absolute; /* Tolto dal flusso per la centratura di #paloContainer */
+  top: 20px;          /* Posizionato in alto */
+  left: 0;            /* Allineato a sinistra del genitore */
+  width: 100%;        /* Occupa l'intera larghezza del genitore per centrare il testo */
+  z-index: 21;        /* Assicura che sia sopra #paloContainer in caso di sovrapposizione */
+}
+
+#topLeftMenu a {
+  margin-right: 70px; /* Increased spacing between menu items */
+}
+
+@media (max-width: 768px) {
+  #topLeftMenu {
+    font-size: 1.5vw;
+  }
+  #topLeftMenu a {
+    margin-right: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  #topLeftMenu {
+    font-size: 1vw;
+  }
+  #topLeftMenu a {
+    margin-right: 20px;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
+  }
+  50% {
+    transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 1);
+  }
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
+  }
+}
+
+@media (max-width: 768px) {
+  #topLeftMenu a.purple-link {
+    animation: pulse 2s infinite ease-in-out;
+  }
+}
+
+@media (max-width: 768px) {
+  #topLeftMenu {
+    font-size: 1.2vw;
+  }
+  #topLeftMenu a {
+    margin-right: 30px;
+  }
+}
+
+#topLeftMenu a {
+  color: yellow; /* Mantiene il colore giallo per i link */
+  text-decoration: none; /* Rimuove la sottolineatura predefinita dei link */
+  margin-right: 50px; /* Aggiunge spazio a destra di ogni link (tranne l'ultimo) */
+  /* Puoi aggiungere altre proprietà come font-weight se necessario */
+}
+
+#topLeftMenu a.purple-link {
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Ombra del testo più sottile */
+  transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease; /* Transizioni fluide */
+  display: inline-block; /* Necessario per transform scale */
+}
+
+#topLeftMenu a.purple-link:hover,
+#topLeftMenu a.purple-link:focus { /* Aggiunto :focus per accessibilità */
+  /* Il colore rimane bianco, ereditato dallo stato normale */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.6); /* Ombra leggermente più definita e "glow" bianco */
+  transform: scale(1.05); /* Leggero ingrandimento */
+}
+
+#topLeftMenu a:last-child {
+  margin-right: 0; /* Remove margin on last link to help centering */
+}
+
+#subtitleText {
+  position: static; /* Changed from absolute to static for proper flow */
+  margin: 0 0 15px 0; /* Margin below PALO text */
+  text-align: center;
+  color: white;
+  font-size: 2vw; /* Increased font size */
+  font-weight: normal;
+}
+
+.image-fade {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+
+  /* Maschera a 2 stati: Sinistra-Svanita, Completamente-Visibile */
+  position: relative; /* Necessario per il corretto funzionamento di z-index */
+  z-index: 10; /* Increased to be above social icons */
+  /* La maschera è larga il 200% dell'elemento. Ogni stato occupa il 100% della vista. */
+  /* Le percentuali nel linear-gradient sono relative alla larghezza totale della maschera (200%). */
+
+  /* Pannello 1 (0% -> 50% della maschera): Completamente Visibile */
+  /*   - interamente opaco (nero) */
+  /* Pannello 2 (50% -> 100% della maschera): Sinistra Svanita */
+  /*   - da 50% a 65% (0-30% della vista del pannello 2): trasparente */
+  /*   - da 65% a 95% (30-90% della vista del pannello 2): gradiente da trasparente a opaco (sfumatura più ampia) */
+  /*   - da 95% a 100% (90-100% della vista del pannello 2): opaco (nero) */
+  mask-image: linear-gradient(to right,
+    black 0%, black 50%,                                         /* P1: Completamente Visibile */
+    transparent 50%, transparent 75%, black 95%, black 100%     /* P2: Sinistra Svanita con sfumatura più ampia */
+  );
+  -webkit-mask-image: linear-gradient(to right, /* Prefisso per compatibilità */
+    black 0%, black 50%,
+    transparent 50%, transparent 75%, black 95%, black 100%
+  );
+  mask-size: 200% 100%;
+  -webkit-mask-size: 200% 100%;
+
+  transition: mask-position 0.7s ease-in-out, -webkit-mask-position 0.7s ease-in-out; /* Transizione lenta */
+}
+
+.image-fade.state-fade-left {
+  mask-position: -100% 0; /* Mostra Pannello 2 (Sinistra Svanita) */
+  -webkit-mask-position: -100% 0;
+}
+
+/* La definizione di .image-fade.state-fade-bottom è ora gestita all'interno della media query */
+/* per max-width: 500px, poiché JavaScript la applica solo in modalità telefono. */
+
+.social-icons {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  z-index: 15; /* Increased to be above image */
+  opacity: 1;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* Stili specifici per la modalità telefono (ora per schermi con larghezza < 767px) */
+@media only screen and (max-width: 768px) {
+  body {
+    overflow: hidden; /* Mantiene il corpo principale senza scroll */
+  }
+
+  .image-wrapper {
+    /* Su mobile, image-wrapper è il contenitore principale */
+    height: 100vh; /* Occupa l'intera altezza del viewport */
+    width: 100vw;
+    position: relative; /* Contesto per .image-fade e .left-content-box */
+    background: #000; /* Sfondo di fallback se l'immagine non carica */
+  }
+
+  .image-fade {
+    /* Immagine di sfondo a schermo intero */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    z-index: 1; /* Dietro l'overlay di contenuto */
+    /* Le maschere sono disabilitate dalla classe .phone-static-layout applicata da JS */
+  }
+
+  .left-content-box {
+    /* Diventa l'overlay di contenuto sopra l'immagine */
+    position: relative; 
+    z-index: 2; /* Sopra .image-fade */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; Rimosso per permettere a paloContainer di centrarsi con margini auto.
+       Il default per justify-content è flex-start, che va bene in questo contesto. */
+    align-items: center;
+    padding: 25px 15px; /* Padding interno generoso */
+    box-sizing: border-box;
+    background-color: rgba(10, 20, 10, 0.80); /* Overlay verde scuro semi-trasparente */
+    background-image: none; /* Rimuove il gradiente desktop */
+    overflow-y: auto; /* Permette lo scroll interno se il contenuto è troppo alto */
+  }
+
+  #topLeftMenu {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px; /* Spazio sotto il menu */
+    padding-top: 0;
+    font-size: clamp(1rem, 4.5vw, 1.4rem);
+  }
+  #topLeftMenu a.purple-link {
+    font-size: clamp(1.2rem, 6vw, 1.7rem); /* Link "DIRTY TIMBS" più grande */
+  }
+
+  #paloContainer {
+    /* Assicura che paloContainer sia visibile e non abbia transizioni strane su mobile */
+    opacity: 1; visibility: visible; transition: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-top: auto;    /* Spinge #paloContainer verso il basso dopo #topLeftMenu e il suo margin-bottom. */
+    margin-bottom: auto; /* Crea spazio sopra .social-icons, centrando #paloContainer nello spazio verticale rimanente. */
+    padding: 15px 0; /* Padding verticale per il blocco PALO */
+  }
+
+  #backgroundPaloText {
+    font-size: clamp(18vw, 22vw, 25vw); /* Titolo PALO più grande e d'impatto */
+    color: yellow;
+    margin-bottom: 8px;
+    line-height: 1; /* Per un aspetto più compatto */
+  }
+
+  #subtitleText {
+    font-size: clamp(5vw, 6.5vw, 7.5vw); /* Sottotitolo ARTIST più grande */
+    color: white;
+    margin-bottom: 25px; /* Più spazio prima del pulsante Spotify */
+  }
+
+  .social-icons {
+    /* La visibilità è gestita dalla classe .phone-static-layout aggiunta da JS */
+    position: static; /* Diventa parte del flusso */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: clamp(20px, 5vw, 30px); /* Gap leggermente aumentato tra le icone */
+    padding-top: 20px; /* Spazio sopra le icone social */
+    margin-bottom: 0; /* Spazio dal fondo gestito dal padding di left-content-box */
+  }
+
+  .social-icons img { /* Dimensioni icone social per mobile */
+    width: clamp(30px, 7vw, 40px);
+    max-width: 40px; /* Mantiene una dimensione massima ragionevole */
+  }
+  .spotify-button { /* Stile pulsante Spotify per mobile */
+    padding: 12px 20px;
+    font-size: clamp(0.9rem, 3.8vw, 1.2rem);
+    border: 2px solid white; /* Bordo bianco visibile */
+    border-radius: 25px; /* Angoli arrotondati per un look da pulsante */
+    background-color: transparent; /* Sfondo completamente trasparente per mobile */
+  }
+
+  /* Classe per forzare visibilità e disabilitare transizioni in modalità telefono */
+  .phone-static-layout {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transition: none !important;
+  }
+
+  /* Assicura che l'immagine non abbia maschere attive quando .phone-static-layout è presente */
+  .image-fade.phone-static-layout {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+}
+
+/* Extend phone mode styles to start at 767px */
+@media only screen and (min-width: 800px) {
+  .spotify-button {
+    background-color: #1DB954 !important;
+  }
+}
+
+/*
+  Applica lo scorrimento e un layout impilato per viewport di tipo desktop (larghezza >= 767px)
+  quando l'altezza del viewport è ridotta (<= 499px).
+  Questo rende .left-content-box scrollabile e organizza il suo contenuto
+  (#topLeftMenu, #paloContainer, .social-icons) in uno stack verticale.
+*/
+@media (min-width: 768px) and (max-height: 499px) {
+  .left-content-box {
+    overflow-y: auto; /* Permette lo scorrimento verticale se il contenuto eccede l'altezza */
+    padding-bottom: 20px; /* Aggiunge padding in fondo all'area scrollabile */
+    /* justify-content: flex-start; è già il default per .left-content-box, non serve ripeterlo */
+  }
+
+  #topLeftMenu {
+    margin-bottom: 20px; /* Spazio dopo il menu, prima di paloContainer */
+  }
+
+  #paloContainer {
+    margin-top: 0; /* Rimuove il margine automatico, fluisce dopo #topLeftMenu */
+    margin-bottom: 20px; /* Spazio dopo paloContainer, prima delle icone social */
+  }
+
+  .social-icons {
+    position: static; /* Lo rende parte del flusso del documento, scorrerà con il contenuto */
+    /* margin-top sarà gestito dal margin-bottom di #paloContainer */
+    /* Altre proprietà come width, display, justify-content, gap rimangono quelle di default */
+  }
+}
+
+.social-icons.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.social-icons.fade-in {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.instagram-logo,
+.apple-music-logo,
+.spotifyw-logo,
+.tiktok-logo {
+  width: 5vw;
+  max-width: 45px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+/* Applica il filtro per rendere bianchi solo i loghi nelle icone social */
+.social-icons .instagram-logo,
+.social-icons .apple-music-logo,
+.social-icons .spotify-logo,
+.social-icons .tiktok-logo {
+  filter: brightness(0) invert(1); /* Rende i loghi social bianchi */
+}
+
+/* Applica il filtro per rendere bianco anche il logo Spotify nel pulsante */
+.spotify-button .spotify-logo {
+  filter: brightness(0) invert(1); /* Rende il logo Spotify nel pulsante bianco */
+  width: clamp(22px, 5.5vw, 30px); /* Aumentata leggermente la dimensione */
+  height: auto;
+  margin-left: 6px; /* Ridotto il margine per avvicinarlo al testo */
+}
+
+.social-icons .spotify-logo {
+  width: 5vw !important;
+  max-width: 45px !important;
+  height: auto !important;
+  transition: transform 0.3s ease !important;
+}
+
+.social-icons a:hover img {
+  transform: scale(1.1);
+}

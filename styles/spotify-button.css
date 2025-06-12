@@ -1,0 +1,54 @@
+.spotify-button {
+  position: relative;
+  z-index: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: clamp(8px, 1.5vw, 16px) clamp(16px, 3vw, 32px);
+  border-radius: 50px;
+  background-color: #1DB954;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.4rem);
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+  max-width: 90vw;
+  flex-wrap: nowrap;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.spotify-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 769px) {
+  .spotify-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    background-color: transparent;
+  }
+  .spotify-logo {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.spotify-bianco-logo {
+  width: 12px !important;
+  height: 12px !important;
+  max-width: 12px !important;
+  max-height: 12px !important;
+  display: inline-block !important;
+  object-fit: contain !important;
+  transform: scale(0.6);
+  transform-origin: center center;
+}

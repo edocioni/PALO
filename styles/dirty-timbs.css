@@ -1,0 +1,148 @@
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Font stack più pulito */
+    color: white;
+    overflow-x: hidden;
+    background-image: url('../images/unnamed\ \(3\).jpg'); /* Immagine di sfondo */
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Effetto parallax-like */
+}
+
+.container {
+    min-height: 100vh;
+    background-color: rgba(0, 0, 0, 0.65); /* Overlay scuro per leggibilità */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+.back-link {
+    display: inline-block; /* Necessario per padding e border */
+    padding: 10px 20px;
+    color: #ffd700; /* Giallo oro per accento */
+    text-decoration: none;
+    font-size: clamp(1.1em, 3vw, 1.4em); /* Leggermente più grande */
+    font-weight: bold;
+    border: 2px solid #ffd700; /* Bordo coordinato */
+    border-radius: 25px; /* Angoli arrotondati */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.3); /* Sfondo scuro semi-trasparente */
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.back-link:hover {
+    color: #1a1a1a; /* Testo scuro per contrasto su sfondo chiaro */
+    background-color: #fffacd; /* Giallo più chiaro al hover come sfondo */
+    border-color: #fffacd; /* Bordo coordinato con lo sfondo hover */
+    text-decoration: none; /* Rimuove la sottolineatura, il cambio di sfondo è sufficiente */
+    transform: translateY(-2px) scale(1.05); /* Leggero sollevamento e ingrandimento */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4); /* Ombra più pronunciata */
+}
+
+main {
+    max-width: 900px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; /* Permette al main di occupare lo spazio disponibile */
+}
+
+.coming-soon-title {
+    font-size: clamp(3.5rem, 12vw, 8rem);
+    color: white;
+    font-weight: 700; /* Più bold */
+    text-transform: uppercase;
+    letter-spacing: 2px; /* Leggera spaziatura */
+    margin-top: 40px;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.6), 0 0 20px rgba(255,255,255,0.15); /* Ombra più definita e leggero "glow" */
+}
+
+.tracklist-section {
+    margin-bottom: 40px;
+    background-color: rgba(255, 255, 255, 0.08); /* Sfondo molto sottile, quasi trasparente */
+    backdrop-filter: blur(4px); /* Effetto vetro smerigliato (opzionale, verifica compatibilità) */
+    -webkit-backdrop-filter: blur(4px); /* Per Safari */
+    padding: clamp(20px, 4vw, 35px);
+    border-radius: 12px;
+    max-width: 650px;
+    width: 100%;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+}
+
+.tracklist-section h2 {
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+    color: #ffd700; /* Giallo oro per il titolo della tracklist */
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.5); /* Sottolineatura leggera */
+    padding-bottom: 10px;
+    display: inline-block; /* Per far sì che il border-bottom si adatti al testo */
+}
+
+.tracklist-section ul {
+    list-style: none;
+    padding: 0;
+    font-size: clamp(1rem, 2.8vw, 1.3rem);
+    line-height: 2;
+}
+
+.tracklist-section li {
+    background-color: transparent; /* Rimosso sfondo individuale */
+    margin-bottom: 10px;
+    padding: 10px 5px;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Separatore sottile */
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.tracklist-section li:hover {
+    color: #ffd700; /* Colore giallo al hover */
+    padding-left: 15px; /* Leggero spostamento a destra */
+}
+
+.tracklist-section li:last-child {
+    border-bottom: none; /* Rimuove il bordo dall'ultimo elemento */
+}
+
+footer {
+    margin-top: auto;
+    padding-top: 20px;
+    font-size: clamp(0.8rem, 2vw, 1rem);
+    color: rgba(255, 255, 255, 0.7); /* Bianco semi-trasparente per il footer */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+/* Media Queries per aggiustamenti fini */
+@media (max-width: 480px) {
+    .coming-soon-title {
+        margin-top: 70px;
+        font-size: clamp(2.8rem, 15vw, 5rem); /* Leggermente più piccolo su mobile */
+    }
+    .tracklist-section {
+        padding: clamp(15px, 3vw, 25px);
+    }
+    .tracklist-section h2 {
+        font-size: clamp(1.4rem, 4.5vw, 2.2rem);
+    }
+    .tracklist-section li {
+        font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    }
+}
