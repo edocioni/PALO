@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Set CSS variable --vh to the actual viewport height in pixels for Safari viewport height fix
+  function setVhVariable() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+  setVhVariable();
+  window.addEventListener('resize', setVhVariable);
+
   const imageWrapper = document.getElementById('imageWrapper');
   const imageFade = document.getElementById('imageFade');
   const paloContainer = document.getElementById('paloContainer');
