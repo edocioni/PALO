@@ -19,6 +19,16 @@ body {
   /* cursor: none; /* Opzionale: nasconde il cursore */
 }
 
+/* For Apple devices (Safari) to use the actual available viewport height, potentially fixing issues with toolbars */
+@supports (-webkit-touch-callout: none) {
+  .image-wrapper {
+    height: -webkit-fill-available;
+  }
+  .left-content-box {
+    height: -webkit-fill-available;
+  }
+}
+
 .left-content-box {
   position: absolute;
   top: 0;
